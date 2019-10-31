@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+  background-color: white;
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 10px;
 }
 
+/*
 .App-logo {
   height: 40vmin;
 }
@@ -19,4 +24,4 @@
 
 .App-link {
   color: #09d3ac;
-}
+}*/

@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import recommendReducer from './recommendReducer';
+import rootReducer from './rootReducer';
 
 export default combineReducers({
-  recommendRD: recommendReducer,
+  rootRD: rootReducer,
 });

@@ -1,0 +1,50 @@
+.listItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+}
+
+.order {
+  min-width: 40px;
+  margin: auto 5px;
+}
+
+.listImage {
+  width: 75px;
+  height: 75px;
+  border-radius: 25px 25px 25px 25px;
+  padding: auto 0;
+}
+
+.listUl {
+  list-style: none;
+  padding-inline-start: 20px;
+  line-height: 1.5;
+}
+
+.listUl li {
+  text-align: left;
+}
+
+.liName {
+  font-size: 15px;
+}
+
+.liName div {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  border: 1px solid #000000;
+  height: 25px; 
+}
+
+.liGenre {
+  font-size: 13px;
+  color: grey;
+}
+
+.liRating {
+  color: grey;
+}
+

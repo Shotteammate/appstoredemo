@@ -6,7 +6,7 @@ const AppRecommendation = ({ recommendedList }) => {
   //console.log("Marker label: ",recommendedList);
   const list = recommendedList.map(listItem => (
     <RecommendItem key={listItem.artistId} listItem={listItem} />
-  ))
+  ));
 
   return (
     <div>

@@ -12,8 +12,8 @@ export const fetchRecommended = () => dispatch => {
     }))
 }
 
-export const fetchAppList = () => dispatch => {
-  fetch('https://cors-anywhere.herokuapp.com/https://rss.itunes.apple.com/api/v1/hk/ios-apps/top-free/all/10/explicit.json')
+export const fetchAppList = (num) => dispatch => {
+  fetch(`https://cors-anywhere.herokuapp.com/https://rss.itunes.apple.com/api/v1/hk/ios-apps/top-free/all/${num}/explicit.json`)
     .then(res => res.json())
     .then(data => dispatch({
       //console.log("in fetchAppList:",data.feed.results)

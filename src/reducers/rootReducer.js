@@ -2,7 +2,7 @@ import { FETCH_RECOMMENDED, FETCH_APPLIST } from '../actions/types';
 
 const initialState = {
   recommendedList: [],
-  appList: []
+  appList: [],
 };
 
 const rootReducer = (state = initialState, action) => {

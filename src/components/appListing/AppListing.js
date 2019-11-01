@@ -4,9 +4,11 @@ import './AppListing.css';
 
 const AppListing = ({ appList }) => {
   //console.log("Marker label: ", appList);
-  const list = appList.map(listItem => (
-    <ListItem key={listItem.artistId} listItem={listItem} />
-  ));
+  let order = 0;
+  const list = appList.map(listItem => {
+    order = order+1;
+    return <ListItem key={listItem.id} listItem={listItem} order={order}/>
+  });
 
   return (
     <div>

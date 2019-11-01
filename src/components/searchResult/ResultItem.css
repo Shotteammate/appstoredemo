@@ -1,26 +1,15 @@
-.listItem {
+.resultItem {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-
+  margin: 5px;
 }
 
-.order {
-  min-width: 40px;
-  margin: auto 5px;
-}
 /* round corner*/
-.listImage{
+.itemImage{
   width: 75px;
   height: 75px;
   border-radius: 25px 25px 25px 25px;
-  padding: auto 0;
-}
-/* round circle*/
-.circle {
-  border-radius: 50%;
-  width: 75px;
-  height: 75px;
   padding: auto 0;
 }
 
@@ -36,10 +25,6 @@
 
 .liGenre {
   font-size: 13px;
-  color: grey;
-}
-
-.liRating {
   color: grey;
 }
 

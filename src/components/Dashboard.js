@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import Search from './Search';
+import Search from './searchBar/Search';
 import AppRecommendation from './appRecommendation/AppRecommendation';
 import AppListing from './appListing/AppListing';
 import { connect } from 'react-redux';
 import { fetchRecommended, fetchAppList } from '../actions/actions';
+import SearchResult from './searchResult/SearchResult';
 
 class Dashboard extends Component {
   state = {
     startPoint: 0,
     currentItem: 10,
     endPoint: 100,
-    scrolling: false
+    scrolling: false,
+    searchInput: ''
   }
 
   loadMore = () => {
@@ -28,26 +30,62 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.fetchRecommended();
     this.props.fetchAppList(this.state.currentItem);
+
+    //scroll listener: trigger load more
     this.scrollListener = window.addEventListener('scroll', (e) => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem <100) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && this.state.searchInput === ''||this.state.searchInput === null) {
         //console.log("here is bottom");
         this.loadMore();
       }
     });
   }
 
+  handleSearchEvent = (name, value) => {
+    this.setState({ [name]: value });
+  }
+
   render() {
     //console.log(this.props.appList);
     const { recommendedList, appList } = this.props;
+    const combinedList = recommendedList.concat(appList);
+    //filtered list of apps for searching
+    const filteredList = combinedList.filter((dataObj) => (
+      (dataObj.name.indexOf(this.state.searchInput) !== -1) || (dataObj.artistName.indexOf(this.state.searchInput) !== -1)||(dataObj.genres[0].name.indexOf(this.state.searchInput) !== -1)
+    ));
 
-    return (
-      <div>
-        <Search />
-        <AppRecommendation recommendedList={recommendedList} />
-        <hr style={{ borderColor: 'white' }} />
-        <AppListing id='appListing' appList={appList} />
-      </div>
-    )
+    if (this.state.searchInput === '' || this.state.searchInput === null) {
+      return (
+        <div>
+          <Search
+            searchInput={this.state.searchInput}
+            handleSearchEvent={this.handleSearchEvent}
+          />
+          <hr style={{ borderColor: 'white' }} />
+          <AppRecommendation recommendedList={recommendedList} />
+          <hr style={{ borderColor: 'white' }} />
+          <AppListing id='appListing' appList={appList} />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <Search
+            searchInput={this.state.searchInput}
+            handleSearchEvent={this.handleSearchEvent}
+          />
+          <hr style={{ borderColor: 'white' }} />
+          <SearchResult filteredList={filteredList} />
+        </div>
+      )
+    }
+    // return (
+    //   <div>
+    //     <Search />
+    //     <AppRecommendation recommendedList={recommendedList} />
+    //     <hr style={{ borderColor: 'white' }} />
+    //     <AppListing id='appListing' appList={appList} />
+    //   </div>
+    // )
   }
 }
 

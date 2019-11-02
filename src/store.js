@@ -3,7 +3,29 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-const initialState = {};
+const saveTolocalStorage = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (err) {
+    console.log('saveTolocalStorage error: ', err);
+  }
+}
+
+const loadFromLocalStorage = () => {
+  try {
+    const serializedState = localStorage.getItem('state');
+    
+    if (serializedState === null ) return undefined;
+    return JSON.parse(serializedState);
+
+  } catch (err) {
+    console.log('loadFromLocalStorage error: ', err);
+    return undefined;
+  }
+}
+
+const initialState = loadFromLocalStorage(); //persisted state
 const middleware = [thunk];
 
 const store = createStore(
@@ -11,5 +33,8 @@ const store = createStore(
   initialState,
   applyMiddleware(...middleware, logger)
 );
+
+//update local storage whenever state changes
+store.subscribe(() => saveTolocalStorage(store.getState()));
 
 export default store;

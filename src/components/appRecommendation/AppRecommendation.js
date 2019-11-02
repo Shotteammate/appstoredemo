@@ -5,7 +5,7 @@ import './AppRecommendation.css';
 const AppRecommendation = ({ recommendedList }) => {
   //console.log("Marker label: ",recommendedList);
   const list = recommendedList.map(listItem => (
-    <RecommendItem key={listItem.artistId} listItem={listItem} />
+    <RecommendItem key={listItem.id} listItem={listItem} />
   ));
 
   return (

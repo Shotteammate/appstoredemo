@@ -33,7 +33,7 @@ class Dashboard extends Component {
 
     //scroll listener: trigger load more
     this.scrollListener = window.addEventListener('scroll', (e) => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && this.state.searchInput === ''||this.state.searchInput === null) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && this.state.searchInput === '' || this.state.searchInput === null) {
         //console.log("here is bottom");
         this.loadMore();
       }
@@ -45,12 +45,12 @@ class Dashboard extends Component {
   }
 
   render() {
-    //console.log(this.props.appList);
+    //console.log('appList: ', this.props.appList);
     const { recommendedList, appList } = this.props;
     const combinedList = recommendedList.concat(appList);
     //filtered list of apps for searching
     const filteredList = combinedList.filter((dataObj) => (
-      (dataObj.name.indexOf(this.state.searchInput) !== -1) || (dataObj.artistName.indexOf(this.state.searchInput) !== -1)||(dataObj.genres[0].name.indexOf(this.state.searchInput) !== -1)
+      (dataObj.name.indexOf(this.state.searchInput) !== -1) || (dataObj.author.indexOf(this.state.searchInput) !== -1) || (dataObj.genre.indexOf(this.state.searchInput) !== -1)
     ));
 
     if (this.state.searchInput === '' || this.state.searchInput === null) {

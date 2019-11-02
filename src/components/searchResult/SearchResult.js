@@ -3,7 +3,6 @@ import './SearchResult.css';
 import ResultItem from './ResultItem';
 
 const SearchResult = ({ filteredList }) => {
-  //console.log(filteredList);
   //remove duplicate items from recommended list and app list 
   //console.log("filteredList:", filteredList.length);
   const uniqueArray = filteredList.filter((dataObj,index) => {

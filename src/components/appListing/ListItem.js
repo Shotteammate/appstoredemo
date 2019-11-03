@@ -3,7 +3,16 @@ import './ListItem.css';
 
 const ListItem = ({ listItem, order }) => {
 
-  let imageClass = order%2 === 0? ('listImage'+ ' circle'):'listImage';
+  let imageClass = order % 2 === 0 ? ('listImage' + ' circle') : 'listImage';
+
+  const getRatings = (rating) => {
+    // Get percentage
+    const starPercentage = (rating / 5) * 100;
+    // Round to nearest 10
+    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+    // Set width of stars-inner to percentage
+    return starPercentageRounded;
+  }
 
   return (
     <div className="listItem">
@@ -15,7 +24,13 @@ const ListItem = ({ listItem, order }) => {
         <ul className='listUl'>
           <li ><div>{listItem.name}</div></li>
           <li className='liGenre'>{listItem.genre}</li>
-          <li className='liRating'>{listItem.starRating} ({listItem.userCount})</li>
+          <li >
+            <div className="stars-outer">
+              <div className="stars-inner" style={{width:`${getRatings(listItem.starRating)}`}}></div>
+            </div> {}
+            {/* {listItem.starRating} */}
+            <span style={{ color: 'grey' }}>({listItem.userCount})</span>
+          </li>
         </ul>
       </div>
     </div>

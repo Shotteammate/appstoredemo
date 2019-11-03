@@ -3,14 +3,15 @@ import './SearchResult.css';
 import ResultItem from './ResultItem';
 
 const SearchResult = ({ filteredList }) => {
+  console.log("filteredList:", filteredList);
   //remove duplicate items from recommended list and app list 
-  //console.log("filteredList:", filteredList.length);
+  console.log("filteredList:", filteredList.length);
   const uniqueArray = filteredList.filter((dataObj,index) => {
     return index === filteredList.findIndex(obj => {
-      return JSON.stringify(obj) === JSON.stringify(dataObj);
+      return JSON.stringify(obj.id) === JSON.stringify(dataObj.id); //filter by obj.id
     });
   });
-  //console.log("uniqueArray:", uniqueArray.length);
+  console.log("uniqueArray:", uniqueArray.length);
   const list = uniqueArray.map(item => <ResultItem key={item.id} item={item} />);
 
   return (

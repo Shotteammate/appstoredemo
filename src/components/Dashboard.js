@@ -16,7 +16,7 @@ class Dashboard extends Component {
   }
 
   loadMore = () => {
-    if (this.state.currentItem <= 100) {
+    if (this.state.currentItem <= this.state.endPoint) {
       //console.log("currentItem: ", this.state.currentItem)
       this.setState({
         ...this.state,
@@ -33,7 +33,7 @@ class Dashboard extends Component {
 
     //scroll listener: trigger load more
     this.scrollListener = window.addEventListener('scroll', (e) => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && this.state.searchInput === '' || this.state.searchInput === null) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < this.state.endPoint && this.state.searchInput === '' || this.state.searchInput === null) {
         //console.log("here is bottom");
         this.loadMore();
       }

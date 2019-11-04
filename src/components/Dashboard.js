@@ -11,30 +11,34 @@ class Dashboard extends Component {
   state = {
     startPoint: 0,
     currentItem: 10,
-    scrolling: false,
+    firstTime: true,
     searchInput: '',
   }
 
   loadMore = () => {
+    document.getElementById('loading').style.display = 'block';
+   
     this.setState({
       ...this.state,
-      currentItem: this.state.currentItem + 10,
-    }, () => (this.props.fetchAppList(this.state.currentItem))); //callback
+      currentItem: this.state.firstTime? this.state.currentItem+0 :this.state.currentItem + 10,
+      firstTime: false
+    }, () => (this.props.fetchAppList(this.state.currentItem))); //callback 
   }
-
-  
 
   componentDidMount() {
     this.props.fetchRecommended();
+    console.log("in componentDidMount: ", this.state.currentItem);
     this.props.fetchAppList(this.state.currentItem);
-
     //scroll listener: trigger load more
     this.scrollListener = window.addEventListener('scroll', (e) => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && (this.state.searchInput === '' || this.state.searchInput === null)) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && this.state.searchInput === '' || this.state.searchInput === null) {
         this.loadMore();
+      } else if(this.state.currentItem >= 100) {
+        document.getElementById('loading').style.display = 'none';
       }
     });
   }
+
 
   handleSearchEvent = (name, value) => {
     this.setState({ [name]: value });
@@ -57,11 +61,12 @@ class Dashboard extends Component {
             handleSearchEvent={this.handleSearchEvent}
           />
           <hr style={{ borderColor: 'white' }} />
-          <Loader loaded={loaded}>
+          <Loader loaded={loaded} >   {/* loading */}
             <AppRecommendation recommendedList={recommendedList} />
             <hr style={{ borderColor: 'white' }} />
             <AppListing id='appListing' appList={appList} />
           </Loader>
+          <div id='loading' style={{ display: 'none' }}>Loading...</div>  {/* test */}
         </div>
       )
     } else {

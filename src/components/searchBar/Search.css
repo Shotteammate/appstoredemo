@@ -19,7 +19,7 @@
 .searchbar::placeholder {  
   /* Firefox, Chrome, Opera */ 
   text-align: center; 
-  font-size: 14px;
+  font-size: 12px;
   /* placeholder search icon */
   font-family: "Font Awesome 5 Free";
   font-weight: 800;
@@ -29,7 +29,7 @@
 .searchbar:-ms-input-placeholder {                 
   /* Internet Explorer 10-11 */ 
   text-align: center; 
-  font-size: 14px;
+  font-size: 12px;
   font-family: "Font Awesome 5 Free";
   font-weight: 800;
   color: grey;

@@ -1,6 +1,6 @@
 .appListing-container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  overflow: auto;
+  overflow: auto; */
 }

@@ -14,8 +14,14 @@ const ListItem = ({ listItem, order }) => {
     return starPercentageRounded;
   }
 
+  const listItemStyle = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flexStart'
+  }
+
   return (
-    <div className="appItem">
+    <div style={listItemStyle}>
       <div className='order'>{order}</div>
       <div style={{ margin: "auto 0" }}>
         <img src={listItem.appIcon} alt='' className={imageClass} />

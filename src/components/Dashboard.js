@@ -11,22 +11,18 @@ class Dashboard extends Component {
   state = {
     startPoint: 0,
     currentItem: 10,
-    endPoint: 100,
     scrolling: false,
-    searchInput: ''
+    searchInput: '',
   }
 
   loadMore = () => {
-    if (this.state.currentItem <= this.state.endPoint) {
-      //console.log("currentItem: ", this.state.currentItem)
-      this.setState({
-        ...this.state,
-        currentItem: this.state.currentItem + 10
-      }, () => (this.props.fetchAppList(this.state.currentItem))); //callback
-    } else {
-      //console.log("Already 100 items")
-    }
+    this.setState({
+      ...this.state,
+      currentItem: this.state.currentItem + 10,
+    }, () => (this.props.fetchAppList(this.state.currentItem))); //callback
   }
+
+  
 
   componentDidMount() {
     this.props.fetchRecommended();
@@ -34,8 +30,7 @@ class Dashboard extends Component {
 
     //scroll listener: trigger load more
     this.scrollListener = window.addEventListener('scroll', (e) => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < this.state.endPoint && this.state.searchInput === '' || this.state.searchInput === null) {
-        //console.log("here is bottom");
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && (this.state.searchInput === '' || this.state.searchInput === null)) {
         this.loadMore();
       }
     });
@@ -81,14 +76,6 @@ class Dashboard extends Component {
         </div>
       )
     }
-    // return (
-    //   <div>
-    //     <Search />
-    //     <AppRecommendation recommendedList={recommendedList} />
-    //     <hr style={{ borderColor: 'white' }} />
-    //     <AppListing id='appListing' appList={appList} />
-    //   </div>
-    // )
   }
 }
 
@@ -97,13 +84,13 @@ const mapState = (state) => {
   return {
     recommendedList: state.rootRD.recommendedList,
     appList: state.rootRD.appList,
-    loaded: state.rootRD.loaded
+    loaded: state.rootRD.loaded,
   }
 }
 
 const mapDispatch = {
   fetchRecommended: fetchRecommended,
-  fetchAppList: fetchAppList
+  fetchAppList: fetchAppList,
 }
 
 export default connect(mapState, mapDispatch)(Dashboard);

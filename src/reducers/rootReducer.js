@@ -3,7 +3,7 @@ import { FETCH_RECOMMENDED, FETCH_APPLIST } from '../actions/types';
 const initialState = {
   recommendedList: [],
   appList: [],
-  loaded: false  // react loader
+  loaded: false,  // react loader
 };
 
 const rootReducer = (state = initialState, action) => {

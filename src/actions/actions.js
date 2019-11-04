@@ -42,3 +42,4 @@ export const fetchAppList = (num) => dispatch => {
     }))
     .catch(err => console.log('fetchAppList: ', err))
 }
+

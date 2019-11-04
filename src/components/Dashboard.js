@@ -5,6 +5,7 @@ import AppListing from './appListing/AppListing';
 import { connect } from 'react-redux';
 import { fetchRecommended, fetchAppList } from '../actions/actions';
 import SearchResult from './searchResult/SearchResult';
+import Loader from 'react-loader';
 
 class Dashboard extends Component {
   state = {
@@ -46,7 +47,7 @@ class Dashboard extends Component {
 
   render() {
     //console.log('appList: ', this.props.appList);
-    const { recommendedList, appList } = this.props;
+    const { recommendedList, appList, loaded } = this.props;
     const combinedList = recommendedList.concat(appList);
     //filtered list of apps for searching
     const filteredList = combinedList.filter((dataObj) => (
@@ -61,9 +62,11 @@ class Dashboard extends Component {
             handleSearchEvent={this.handleSearchEvent}
           />
           <hr style={{ borderColor: 'white' }} />
-          <AppRecommendation recommendedList={recommendedList} />
-          <hr style={{ borderColor: 'white' }} />
-          <AppListing id='appListing' appList={appList} />
+          <Loader loaded={loaded}>
+            <AppRecommendation recommendedList={recommendedList} />
+            <hr style={{ borderColor: 'white' }} />
+            <AppListing id='appListing' appList={appList} />
+          </Loader>
         </div>
       )
     } else {
@@ -93,7 +96,8 @@ const mapState = (state) => {
   //console.log(state);
   return {
     recommendedList: state.rootRD.recommendedList,
-    appList: state.rootRD.appList
+    appList: state.rootRD.appList,
+    loaded: state.rootRD.loaded
   }
 }
 

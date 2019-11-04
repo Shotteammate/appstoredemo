@@ -12,7 +12,7 @@ class Search extends Component {
         <input
           className='searchbar'
           type="text"
-          placeholder="搜尋"
+          placeholder='&#xF002; 搜尋'
           name="searchInput"
           value={this.props.searchInput}
           onChange={this.handleOnChange}

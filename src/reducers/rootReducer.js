@@ -3,6 +3,7 @@ import { FETCH_RECOMMENDED, FETCH_APPLIST } from '../actions/types';
 const initialState = {
   recommendedList: [],
   appList: [],
+  loaded: false  // react loader
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -10,12 +11,14 @@ const rootReducer = (state = initialState, action) => {
     case FETCH_RECOMMENDED:
       return {
         ...state,
-        recommendedList: action.payload
+        recommendedList: action.payload,
+        loaded: true
       };
     case FETCH_APPLIST:
       return {
         ...state,
-        appList: action.payload
+        appList: action.payload,
+        loaded: true
       };
     default:
       return state;

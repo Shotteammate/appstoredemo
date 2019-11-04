@@ -20,10 +20,17 @@
   /* Firefox, Chrome, Opera */ 
   text-align: center; 
   font-size: 14px;
+  /* placeholder search icon */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 800;
+  color: grey;
 } 
 
 .searchbar:-ms-input-placeholder {                 
   /* Internet Explorer 10-11 */ 
   text-align: center; 
   font-size: 14px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 800;
+  color: grey;
 } 

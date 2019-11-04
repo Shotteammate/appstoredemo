@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/appstoredemo/static/css/main.1cd7caf7.chunk.css",
-    "main.js": "/appstoredemo/static/js/main.28aca4a9.chunk.js",
-    "main.js.map": "/appstoredemo/static/js/main.28aca4a9.chunk.js.map",
+    "main.css": "/appstoredemo/static/css/main.bb502c56.chunk.css",
+    "main.js": "/appstoredemo/static/js/main.efcce35a.chunk.js",
+    "main.js.map": "/appstoredemo/static/js/main.efcce35a.chunk.js.map",
     "runtime-main.js": "/appstoredemo/static/js/runtime-main.12aba0e8.js",
     "runtime-main.js.map": "/appstoredemo/static/js/runtime-main.12aba0e8.js.map",
     "static/js/2.7af6d206.chunk.js": "/appstoredemo/static/js/2.7af6d206.chunk.js",
     "static/js/2.7af6d206.chunk.js.map": "/appstoredemo/static/js/2.7af6d206.chunk.js.map",
     "index.html": "/appstoredemo/index.html",
-    "precache-manifest.ba935d6ef9d86911be434fb53f5d27eb.js": "/appstoredemo/precache-manifest.ba935d6ef9d86911be434fb53f5d27eb.js",
+    "precache-manifest.7d0fa6efc70e5f8fed760e930975a3f2.js": "/appstoredemo/precache-manifest.7d0fa6efc70e5f8fed760e930975a3f2.js",
     "service-worker.js": "/appstoredemo/service-worker.js",
-    "static/css/main.1cd7caf7.chunk.css.map": "/appstoredemo/static/css/main.1cd7caf7.chunk.css.map"
+    "static/css/main.bb502c56.chunk.css.map": "/appstoredemo/static/css/main.bb502c56.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.12aba0e8.js",
     "static/js/2.7af6d206.chunk.js",
-    "static/css/main.1cd7caf7.chunk.css",
-    "static/js/main.28aca4a9.chunk.js"
+    "static/css/main.bb502c56.chunk.css",
+    "static/js/main.efcce35a.chunk.js"
   ]
 }

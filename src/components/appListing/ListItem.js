@@ -15,7 +15,7 @@ const ListItem = ({ listItem, order }) => {
   }
 
   return (
-    <div className="listItem">
+    <div className="appItem">
       <div className='order'>{order}</div>
       <div style={{ margin: "auto 0" }}>
         <img src={listItem.appIcon} alt='' className={imageClass} />
@@ -26,7 +26,7 @@ const ListItem = ({ listItem, order }) => {
           <li className='liGenre'>{listItem.genre}</li>
           <li >
             <div className="stars-outer">
-              <div className="stars-inner" style={{width:`${getRatings(listItem.starRating)}`}}></div>
+              <div className="stars-inner" style={{ width: `${getRatings(listItem.starRating)}` }}></div>
             </div> {}
             {/* {listItem.starRating} */}
             <span style={{ color: 'grey' }}>({listItem.userCount})</span>

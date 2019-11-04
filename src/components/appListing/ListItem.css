@@ -1,14 +1,14 @@
-.listItem {
+.appItem {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-
 }
 
 .order {
   min-width: 40px;
   margin: auto 5px;
 }
+
 /* round corner*/
 .listImage{
   width: 75px;

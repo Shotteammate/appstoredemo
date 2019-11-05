@@ -22,7 +22,7 @@ const ListItem = ({ listItem, order }) => {
   }
 
   return (
-    <div className='appItem'>
+    <div className='appItem' style={listItemStyle}>
       <div className='order'>{order}</div>
       <div style={{ margin: "auto 0" }}>
         <img src={listItem.appIcon} alt='' className={imageClass} />

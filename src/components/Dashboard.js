@@ -17,23 +17,22 @@ class Dashboard extends Component {
 
   loadMore = () => {
     document.getElementById('loading').style.display = 'block';
-   
+
     this.setState({
       ...this.state,
-      currentItem: this.state.firstTime? this.state.currentItem+0 :this.state.currentItem + 10,
+      currentItem: this.state.firstTime ? this.state.currentItem + 0 : this.state.currentItem + 10,
       firstTime: false
     }, () => (this.props.fetchAppList(this.state.currentItem))); //callback 
   }
 
   componentDidMount() {
     this.props.fetchRecommended();
-    console.log("in componentDidMount: ", this.state.currentItem);
     this.props.fetchAppList(this.state.currentItem);
     //scroll listener: trigger load more
     this.scrollListener = window.addEventListener('scroll', (e) => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && this.state.searchInput === '' || this.state.searchInput === null) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && (this.state.searchInput === '' || this.state.searchInput === null)) {
         this.loadMore();
-      } else if(this.state.currentItem >= 100) {
+      } else if (this.state.currentItem >= 100 && (this.state.searchInput === '' || this.state.searchInput === null)) {
         document.getElementById('loading').style.display = 'none';
       }
     });
@@ -66,7 +65,11 @@ class Dashboard extends Component {
             <hr style={{ borderColor: 'white' }} />
             <AppListing id='appListing' appList={appList} />
           </Loader>
-          <div id='loading' style={{ display: 'none' }}>Loading...</div>  {/* test */}
+          <div id='loading' style={{ display: 'none' }}>
+            <div className="fa-3x">         {/* Font awesome 5 free */}
+              <i className="fas fa-spinner fa-pulse"></i>
+            </div>
+          </div>
         </div>
       )
     } else {

@@ -1,0 +1,40 @@
+$searchBarWidth: 95%;
+$pholderFontWeight: 800;
+$pholderColor: grey;
+
+@mixin pholderStyle () {
+  text-align: center; 
+  font-size: 12px;
+  /* placeholder search icon */
+  font-family: "Font Awesome 5 Free";
+  font-weight: $pholderFontWeight;
+  color: $pholderColor;
+}
+
+.search-container {
+  margin:10px;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 1;
+  width: $searchBarWidth;
+
+  .searchbarInput{
+    width: $searchBarWidth;
+    height: 20px;
+    background-color: rgb(211, 210, 210);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    &::placeholder {  
+      /* Firefox, Chrome, Opera */ 
+      @include pholderStyle();
+    } 
+
+    &:-ms-input-placeholder {                 
+      /* Internet Explorer 10-11 */ 
+      @include pholderStyle();
+    } 
+  }
+}

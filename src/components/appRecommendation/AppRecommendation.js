@@ -1,6 +1,6 @@
 import React from 'react';
 import RecommendItem from './RecommendItem';
-import './AppRecommendation.css';
+import './AppRecommendation.scss';
 
 const AppRecommendation = ({ recommendedList }) => {
   //console.log("Marker label: ",recommendedList);

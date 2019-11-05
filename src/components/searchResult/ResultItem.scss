@@ -1,0 +1,38 @@
+$imgIconSize: 75px;
+
+.resultItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 5px;
+
+  /* round corner*/
+  .itemImage{
+    width: $imgIconSize;
+    height: $imgIconSize;
+    border-radius: 25px 25px 25px 25px;
+    padding: auto 0;
+  }
+  
+  .listUl {
+    list-style: none;
+    padding-inline-start: 20px;
+    line-height: 1.5;
+
+    .listUl li {
+      text-align: left;
+    }
+
+    .liGenre {
+      font-size: 13px;
+      color: grey;
+    }
+  }
+}
+
+
+
+
+
+
+

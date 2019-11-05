@@ -1,9 +1,10 @@
 import React from 'react';
-import './ListItem.css';
+import './ListItem.scss';
 
 const ListItem = ({ listItem, order }) => {
 
   let imageClass = order % 2 === 0 ? ('listImage' + ' circle') : 'listImage';
+  const userCount = listItem.userCount === 'undefined' ? 0:listItem.userCount;
 
   const getRatings = (rating) => {
     // Get percentage
@@ -21,7 +22,7 @@ const ListItem = ({ listItem, order }) => {
   }
 
   return (
-    <div style={listItemStyle}>
+    <div className='appItem'>
       <div className='order'>{order}</div>
       <div style={{ margin: "auto 0" }}>
         <img src={listItem.appIcon} alt='' className={imageClass} />
@@ -35,7 +36,7 @@ const ListItem = ({ listItem, order }) => {
               <div className="stars-inner" style={{ width: `${getRatings(listItem.starRating)}` }}></div>
             </div> {}
             {/* {listItem.starRating} */}
-            <span style={{ color: 'grey' }}>({listItem.userCount})</span>
+            <span style={{ color: 'grey' }}>({userCount})</span>
           </li>
         </ul>
       </div>

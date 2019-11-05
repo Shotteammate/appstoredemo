@@ -1,5 +1,5 @@
 import React from 'react';
-import './RecommendItem.css';
+import './RecommendItem.scss';
 
 const RecommendItem = ({ listItem }) => {
   //console.log(listItem);

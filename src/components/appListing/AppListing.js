@@ -1,6 +1,5 @@
 import React from 'react';
 import ListItem from './ListItem';
-import './AppListing.css';
 
 const AppListing = ({ appList }) => {
   //console.log("Marker label: ", appList);
@@ -12,7 +11,7 @@ const AppListing = ({ appList }) => {
 
   return (
     <div>
-      <div className="appListing-container">
+      <div>
         {list}
       </div>
     </div>

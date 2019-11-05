@@ -1,5 +1,5 @@
 import React from 'react';
-import './SearchResult.css';
+import './SearchResult.scss';
 import ResultItem from './ResultItem';
 
 const SearchResult = ({ filteredList }) => {

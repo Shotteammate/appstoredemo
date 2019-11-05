@@ -1,0 +1,82 @@
+$imgIconSize: 75px;
+
+.appItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .order {
+    min-width: 40px;
+    margin: auto 5px;
+  }
+
+  /* round corner*/
+  .listImage{
+    width: $imgIconSize;
+    height: $imgIconSize;
+    border-radius: 25px 25px 25px 25px;
+    padding: auto 0;
+  }
+  /* round circle*/
+  .circle {
+    border-radius: 50%;
+    width: $imgIconSize;
+    height: $imgIconSize;
+    padding: auto 0;
+  }
+
+  .listUl {
+    list-style: none;
+    padding-inline-start: 20px;
+    line-height: 1.5;
+
+    li {
+      text-align: left;
+    }
+
+    .liGenre {
+      font-size: 13px;
+      color: grey;
+    }
+
+    /* Star Rating */
+    .stars-outer {
+      position: relative;
+      display: inline-block;
+
+      .stars-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0; /* in percentage */
+
+        &::before {
+          content: "\f005 \f005 \f005 \f005 \f005";
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          color: #f8ce0b;
+        }
+      }
+
+      &::before {
+        content: "\f005 \f005 \f005 \f005 \f005";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 200;
+        color: #ccc;
+      }
+
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

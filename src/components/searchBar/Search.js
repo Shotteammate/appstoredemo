@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Search.css';
+import './Search.scss';
 
 class Search extends Component {
   handleOnChange = (e) => {
@@ -10,7 +10,7 @@ class Search extends Component {
     return (
       <div className='search-container'>
         <input
-          className='searchbar'
+          className='searchbarInput'
           type="text"
           placeholder='&#xF002; 搜尋'
           name="searchInput"

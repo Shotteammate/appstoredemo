@@ -8,7 +8,7 @@ const ResultItem = ({ item }) => {
         <img src={item.appIcon} className='itemImage' alt='' />
       </div>
       <div style={{ margin: "auto 0" }}>
-        <ul className='listUl'>
+        <ul className='listResultUl'>
           <li ><div>{item.name}</div></li>
           <li className='liGenre'>{item.genre}</li>
         </ul>

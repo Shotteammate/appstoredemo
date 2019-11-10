@@ -14,10 +14,11 @@ $imgIconSize: 75px;
     padding: auto 0;
   }
   
-  .listUl {
+  .listResultUl {
     list-style: none;
     padding-inline-start: 20px;
     line-height: 1.5;
+    text-align: left;
 
     .listUl li {
       text-align: left;

@@ -11,7 +11,7 @@ class Dashboard extends Component {
   state = {
     startPoint: 0,
     currentItem: 10,
-    firstTime: true,
+    isFirstTime: true,
     searchInput: '',
   }
 
@@ -19,16 +19,15 @@ class Dashboard extends Component {
     document.getElementById('loading').style.display = 'block';
 
     this.setState({
-      ...this.state,
-      currentItem: this.state.firstTime ? this.state.currentItem + 0 : this.state.currentItem + 10,
-      firstTime: false
+      currentItem: this.state.isFirstTime ? this.state.currentItem : this.state.currentItem + 10,
+      isFirstTime: false
     }, () => (this.props.fetchAppList(this.state.currentItem))); //callback 
   }
 
   componentDidMount() {
     this.props.fetchRecommended();
     this.props.fetchAppList(this.state.currentItem);
-    //scroll listener: trigger load more
+    //scroll listener: trigger load more     //no change for code
     this.scrollListener = window.addEventListener('scroll', (e) => {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && (this.state.searchInput === '' || this.state.searchInput === null)) {
         this.loadMore();
@@ -47,9 +46,10 @@ class Dashboard extends Component {
     //console.log('appList: ', this.props.appList);
     const { recommendedList, appList, loaded } = this.props;
     const combinedList = recommendedList.concat(appList);
-    //filtered list of apps for searching
+
+    //filtered list of apps for searching   //toLowerCase() for case insensive checking, no extra array or data mutate
     const filteredList = combinedList.filter((dataObj) => (
-      (dataObj.name.indexOf(this.state.searchInput) !== -1) || (dataObj.author.indexOf(this.state.searchInput) !== -1) || (dataObj.genre.indexOf(this.state.searchInput) !== -1)
+      (dataObj.name.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) !== -1) || (dataObj.author.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) !== -1) || (dataObj.genre.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) !== -1)
     ));
 
     if (this.state.searchInput === '' || this.state.searchInput === null) {

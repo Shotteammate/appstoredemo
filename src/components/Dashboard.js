@@ -3,7 +3,7 @@ import Search from './searchBar/Search';
 import AppRecommendation from './appRecommendation/AppRecommendation';
 import AppListing from './appListing/AppListing';
 import { connect } from 'react-redux';
-import { fetchRecommended, fetchAppList } from '../actions/actions';
+import { fetchRecommended, fetchAppList, setIsScrolling } from '../actions/actions';
 import SearchResult from './searchResult/SearchResult';
 import Loader from 'react-loader';
 
@@ -15,25 +15,38 @@ class Dashboard extends Component {
     searchInput: '',
   }
 
+  handleScroll = (e) => {
+    if(this.props.isScrolling) {
+      console.log("is Scrolling, return");
+      return;
+    } else if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && (this.state.searchInput === '' || this.state.searchInput === null)) {
+      this.loadMore();
+    } else if (this.state.currentItem >= 100 && (this.state.searchInput === '' || this.state.searchInput === null)) {
+      document.getElementById('loading').style.display = 'none';
+    }
+  }
+
   loadMore = () => {
     document.getElementById('loading').style.display = 'block';
+    this.props.setIsScrolling();
 
     this.setState({
-      currentItem: this.state.isFirstTime ? this.state.currentItem : this.state.currentItem + 10,
-      isFirstTime: false
-    }, () => (this.props.fetchAppList(this.state.currentItem))); //callback 
+      //currentItem: this.state.isFirstTime ? this.state.currentItem : this.state.currentItem + 10,
+      //isFirstTime: false,
+      currentItem: this.state.currentItem + 10
+    }, () => {
+      this.props.fetchAppList(this.state.currentItem);
+    }); //callback 
   }
 
   componentDidMount() {
     this.props.fetchRecommended();
     this.props.fetchAppList(this.state.currentItem);
-    //scroll listener: trigger load more     //no change for code
+
+    //scroll listener: trigger load more    
+    //modification: an isScrolling flag is added to prevent multiple triggers for fetching app listing
     this.scrollListener = window.addEventListener('scroll', (e) => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.state.currentItem < 100 && (this.state.searchInput === '' || this.state.searchInput === null)) {
-        this.loadMore();
-      } else if (this.state.currentItem >= 100 && (this.state.searchInput === '' || this.state.searchInput === null)) {
-        document.getElementById('loading').style.display = 'none';
-      }
+      this.handleScroll(e);
     });
   }
 
@@ -93,12 +106,14 @@ const mapState = (state) => {
     recommendedList: state.rootRD.recommendedList,
     appList: state.rootRD.appList,
     loaded: state.rootRD.loaded,
+    isScrolling: state.rootRD.isScrolling
   }
 }
 
 const mapDispatch = {
   fetchRecommended: fetchRecommended,
   fetchAppList: fetchAppList,
+  setIsScrolling: setIsScrolling
 }
 
 export default connect(mapState, mapDispatch)(Dashboard);

@@ -1,4 +1,4 @@
-import { FETCH_RECOMMENDED, FETCH_APPLIST } from './types';
+import { FETCH_RECOMMENDED, FETCH_APPLIST, SET_SCROLLING_FALSE, SET_SCROLLING_TRUE } from './types';
 import axios from 'axios';
 
 //console.log("axios: ", res.data.feed.results);
@@ -36,10 +36,20 @@ export const fetchAppList = (num) => dispatch => {
       }
     )))
     //.then(results => console.log('results: ', results))
-    .then(listedApps => dispatch({
-      type: FETCH_APPLIST,
-      payload: listedApps
-    }))
+    .then(listedApps => {
+      dispatch({
+        type: FETCH_APPLIST,
+        payload: listedApps
+      });
+      dispatch({
+        type: SET_SCROLLING_FALSE,
+        payload: false
+      })
+    })
     .catch(err => console.log('fetchAppList: ', err))
 }
 
+export const setIsScrolling = () => ({
+  type: SET_SCROLLING_TRUE,
+  payload: true
+})

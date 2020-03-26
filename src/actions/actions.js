@@ -1,7 +1,6 @@
 import { FETCH_RECOMMENDED, FETCH_APPLIST, SET_SCROLLING_FALSE, SET_SCROLLING_TRUE } from './types';
 import axios from 'axios';
 
-//console.log("axios: ", res.data.feed.results);
 export const fetchRecommended = () => dispatch => {
   axios.get('https://cors-anywhere.herokuapp.com/https://rss.itunes.apple.com/api/v1/hk/ios-apps/top-grossing/all/10/explicit.json')
     .then(res => res.data.feed.results.map(recommendedApp => (
@@ -21,7 +20,6 @@ export const fetchRecommended = () => dispatch => {
 
 export const fetchAppList = (num) => dispatch => {
   axios.get(`https://cors-anywhere.herokuapp.com/https://rss.itunes.apple.com/api/v1/hk/ios-apps/top-free/all/${num}/explicit.json`)
-    //get all apps'id in form of int array which return from 'map' by default
     .then(res => res.data.feed.results.map(app => (parseInt(app.id))))
     .then(appIds => axios.get(`https://cors-anywhere.herokuapp.com/https://itunes.apple.com/hk/lookup?id=${appIds}`))
     .then(res => res.data.results.map(listedApp => (
@@ -35,7 +33,6 @@ export const fetchAppList = (num) => dispatch => {
         userCount: `${listedApp.userRatingCount}`
       }
     )))
-    //.then(results => console.log('results: ', results))
     .then(listedApps => {
       dispatch({
         type: FETCH_APPLIST,

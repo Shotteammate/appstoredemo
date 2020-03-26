@@ -25,7 +25,7 @@ const loadFromLocalStorage = () => {
   }
 }
 
-const initialState = loadFromLocalStorage(); //persisted state
+const initialState = loadFromLocalStorage();
 const middleware = [thunk];
 
 const store = createStore(
@@ -34,7 +34,6 @@ const store = createStore(
   applyMiddleware(...middleware, logger)
 );
 
-//update local storage whenever state changes
 store.subscribe(() => saveTolocalStorage(store.getState()));
 
 export default store;

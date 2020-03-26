@@ -2,7 +2,6 @@ import React from 'react';
 import './RecommendItem.scss';
 
 const RecommendItem = ({ listItem }) => {
-  //console.log(listItem);
   return (
     <div className="item">
       <img src={listItem.appIcon} alt=''/>

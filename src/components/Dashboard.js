@@ -15,7 +15,7 @@ class Dashboard extends Component {
     searchInput: '',
   }
 
-  handleScroll = (e) => {
+  handleScroll = () => {
     if(this.props.isScrolling) {
       console.log("is Scrolling, return");
       return;
@@ -31,20 +31,15 @@ class Dashboard extends Component {
     this.props.setIsScrolling();
 
     this.setState({
-      //currentItem: this.state.isFirstTime ? this.state.currentItem : this.state.currentItem + 10,
-      //isFirstTime: false,
       currentItem: this.state.currentItem + 10
     }, () => {
       this.props.fetchAppList(this.state.currentItem);
-    }); //callback 
+    });
   }
 
   componentDidMount() {
     this.props.fetchRecommended();
     this.props.fetchAppList(this.state.currentItem);
-
-    //scroll listener: trigger load more    
-    //modification: an isScrolling flag is added to prevent multiple triggers for fetching app listing
     this.scrollListener = window.addEventListener('scroll', (e) => {
       this.handleScroll(e);
     });
@@ -56,11 +51,8 @@ class Dashboard extends Component {
   }
 
   render() {
-    //console.log('appList: ', this.props.appList);
     const { recommendedList, appList, loaded } = this.props;
     const combinedList = recommendedList.concat(appList);
-
-    //filtered list of apps for searching   //toLowerCase() for case insensive checking, no extra array or data mutate
     const filteredList = combinedList.filter((dataObj) => (
       (dataObj.name.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) !== -1) || (dataObj.author.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) !== -1) || (dataObj.genre.toLowerCase().indexOf(this.state.searchInput.toLowerCase()) !== -1)
     ));
@@ -73,13 +65,13 @@ class Dashboard extends Component {
             handleSearchEvent={this.handleSearchEvent}
           />
           <hr style={{ borderColor: 'white' }} />
-          <Loader loaded={loaded} >   {/* loading */}
+          <Loader loaded={loaded} > 
             <AppRecommendation recommendedList={recommendedList} />
             <hr style={{ borderColor: 'white' }} />
             <AppListing id='appListing' appList={appList} />
           </Loader>
           <div id='loading' style={{ display: 'none' }}>
-            <div className="fa-3x">         {/* Font awesome 5 free */}
+            <div className="fa-3x">   
               <i className="fas fa-spinner fa-pulse"></i>
             </div>
           </div>
@@ -101,7 +93,6 @@ class Dashboard extends Component {
 }
 
 const mapState = (state) => {
-  //console.log(state);
   return {
     recommendedList: state.rootRD.recommendedList,
     appList: state.rootRD.appList,
@@ -111,9 +102,9 @@ const mapState = (state) => {
 }
 
 const mapDispatch = {
-  fetchRecommended: fetchRecommended,
-  fetchAppList: fetchAppList,
-  setIsScrolling: setIsScrolling
+  fetchRecommended,
+  fetchAppList,
+  setIsScrolling
 }
 
 export default connect(mapState, mapDispatch)(Dashboard);

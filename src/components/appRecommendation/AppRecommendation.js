@@ -3,7 +3,6 @@ import RecommendItem from './RecommendItem';
 import './AppRecommendation.scss';
 
 const AppRecommendation = ({ recommendedList }) => {
-  //console.log("Marker label: ",recommendedList);
   const list = recommendedList.map(listItem => (
     <RecommendItem key={listItem.id} listItem={listItem} />
   ));

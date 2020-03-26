@@ -3,7 +3,7 @@ import { FETCH_RECOMMENDED, FETCH_APPLIST, SET_SCROLLING_FALSE, SET_SCROLLING_TR
 const initialState = {
   recommendedList: [],
   appList: [],
-  loaded: false,  // react loader
+  loaded: false, 
   isScrolling: false
 };
 
@@ -24,12 +24,12 @@ const rootReducer = (state = initialState, action) => {
     case SET_SCROLLING_FALSE:
       return {
         ...state,
-        isScrolling: action.payload //reset to false
+        isScrolling: action.payload
       };
     case SET_SCROLLING_TRUE:
       return {
         ...state,
-        isScrolling: action.payload //set to true
+        isScrolling: action.payload
       };
     default:
       return state;
